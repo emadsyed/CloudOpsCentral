@@ -3,7 +3,8 @@ def call(Map config) {
  node('master'){
  sh 'ls'
 stage('Checkout'){
-
+    echo 'Checking out Code from GitHub'
+        checkout scm
 }
 stage('Build'){
 
@@ -11,13 +12,21 @@ stage('Build'){
     sh 'npm install'
 }
 stage('Test'){ 
-    echo 'version'  
+    echo 'Testing'  
 }
+stage('code analysis'){
+
+  echo 'Starting Code Analysis'
+  }
+
 stage('Publish') { 
   sh libraryResource 'docker-push.sh'
  sh request
  }
-
+stage('Post Action'){
+echo 'Cleaning Work Space'
+echo 'Sending email'
+}
 }
 
 
