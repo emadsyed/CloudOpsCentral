@@ -1,7 +1,7 @@
 def call(Map config) {
 
  node('master'){
- sh 'ls'
+
 stage('Checkout'){
     echo 'Checking out Code from GitHub'
         checkout scm
@@ -23,9 +23,10 @@ stage('Publish') {
   sh libraryResource 'docker-push.sh'
  sh request
  }
+
 stage('Post Action'){
-echo 'Cleaning Work Space'
-echo 'Sending email'
+    echo 'Cleaning Work Space'
+    echo 'Sending email'
 }
 }
 
